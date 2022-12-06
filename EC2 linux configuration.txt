@@ -1,0 +1,56 @@
+1. yum install httpd*
+
+2. yum install python3
+
+3. cd /var/www/cgi-bin/
+
+4. vi anyfilename.py
+
+----------------------------------------------------------write the below script and save it-----------------------------------------------
+
+#! /usr/bin/python3
+ 
+import cgi
+import subprocess
+import json
+
+print("content-type: text/html")
+print()
+
+user_input = cgi.FieldStorage()
+command = user_input.getvalue("x")
+output = subprocess.getstatusoutput("{0}".format(command))
+StatusCode = output[0]
+result = output[1]
+db = { "Result": result, "statusCode": StatusCode }
+finalResult = json.dumps(db)
+print(finalResult)
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+5. chmod 777 anyfilename.py
+
+6. vi /etc/sudoers
+
+---------------------------------------add apache root privileges with no password
+
+root    ALL=(ALL)  ALL   # this line is already Present search it and add below this line the given apache command
+apache  ALL=(ALL)  NOPASSWD: ALL   #Add this
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+7. vi /etc/selinux/config
+
+set selinux=disabled  # do this if you want to configure high end commands such as samba, xrdp or even making a user with root privileges
+set type = minimum 
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+8. systemctl enable httpd.service
+
+9. systemctl start httpd.service
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+10. http://your machine public-ip/cgi-bin/cmd.py?x=commandname //connect this with your front end
+
