@@ -15,7 +15,7 @@ I Terminal is an application which allow users to to use it 2 way one side is ma
 
 We have implemented security features such as app lock on running app in background while giving quiz to avoid cheating or any unfair means to answer question and perform fairly in the quiz.
 
-#Note: 
+# Note: 
 All the app configuratons are documented in the given report and notepad while i have not provided the application code for security reasons.......!
 
 ![Screenshot_20221126-140827](https://user-images.githubusercontent.com/56120761/205842436-08451819-b208-4f39-8b3a-4d48e1327146.jpg)
